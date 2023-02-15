@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
-  name: rollouts-demo
+  name: {{ template "helm-guestbook.fullname" . }}
 spec:
   replicas: {{ .Values.replicas }}
   strategy:
