@@ -1,0 +1,12 @@
+# Default values
+
+image:
+  tag: blue
+
+  # also can be green
+
+promotion:
+  auto: true
+  seconds: 10
+
+replicas: 5
