@@ -1,37 +1,57 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
-  name: rollouts-demo
+  name: {{ template "helm-guestbook.fullname" . }}
+  labels:
+    app: {{ template "helm-guestbook.name" . }}
+    chart: {{ template "helm-guestbook.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
 spec:
-  replicas: 5
-  strategy:
-    canary:
-      steps:
-        - setWeight: 20
-        - pause: {}
-        - setWeight: 40
-        - pause: {duration: 10}
-        - setWeight: 60
-        - pause: {duration: 10}
-        - setWeight: 80
-        - pause: {duration: 10}
-  revisionHistoryLimit: 2
+  replicas: {{ .Values.replicaCount }}
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: rollouts-demo
+      app: {{ template "helm-guestbook.name" . }}
+      release: {{ .Release.Name }}
+  strategy:
+    blueGreen:
+      activeService: {{ template "helm-guestbook.fullname" . }}
+      previewService: {{ template "helm-guestbook.fullname" . }}-preview
+
   template:
     metadata:
       labels:
-        app: rollouts-demo
+        app: {{ template "helm-guestbook.name" . }}
+        release: {{ .Release.Name }}
     spec:
       containers:
-        - name: rollouts-demo
-          image: argoproj/rollouts-demo:blue
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 8080
+              containerPort: 80
               protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
           resources:
-            requests:
-              memory: 32Mi
-              cpu: 5m
+{{ toYaml .Values.resources | indent 12 }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
