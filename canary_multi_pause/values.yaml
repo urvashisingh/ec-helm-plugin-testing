@@ -1,0 +1,6 @@
+# Default values
+
+image:
+  tag: blue
+
+  # also can be green
