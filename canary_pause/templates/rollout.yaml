@@ -20,7 +20,7 @@ spec:
 #      previewService: {{ template "helm-guestbook.fullname" . }}-preview
     canary:
       steps:
-        - pause: {}
+        - pause: { {{ .Values.pause.duration }} }
       
   template:
     metadata:

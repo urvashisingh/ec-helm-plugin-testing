@@ -1,12 +1,3 @@
-# Argo Rollouts and Helm
-
-Argo Rollouts will respond to changes in Rollout resources
-regardless of the event source. If you package your manifest
-with the Helm package manager you can perform Progressive Delivery deployments with Helm
-
-1. Install the Argo Rollouts controller in your cluster: https://github.com/argoproj/argo-rollouts#installation
-2. Install the `helm` executable locally: https://helm.sh/docs/intro/install/
-
 ## Deploying the initial version
 
 To deploy the first version of your application:
@@ -14,7 +5,7 @@ To deploy the first version of your application:
 ```
 git clone https://github.com/argoproj/argo-rollouts.git
 cd argo-rollouts/examples
-helm install example ./helm-blue-green/
+helm install example ./canary_multi_pause/
 ```
 
 Your application will be deployed and exposed via the `example-helm-guestbook` service
@@ -24,7 +15,7 @@ Your application will be deployed and exposed via the `example-helm-guestbook` s
 To deploy the updated version using a Blue/Green strategy:
 
 ```
-helm upgrade example ./helm-blue-green/  --set image.tag=0.2
+helm upgrade example ./canary_multi_pause/  --set image.tag=green
 ```
 
 Now, two versions will exist in your cluster (and each one has an associated service)
@@ -40,5 +31,3 @@ To advance the rollout and make the new version stable
 ```
 kubectl-argo-rollouts promote example-helm-guestbook
 ```
-
-This promotes container image `ks-guestbook-demo:0.2` to `green` status and `Rollout` deletes old replica which runs `ks-guestbook-demo:0.1`.

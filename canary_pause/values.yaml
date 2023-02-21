@@ -4,6 +4,9 @@
 
 replicaCount: 1
 
+pause:
+  duration: ~
+
 image:
   repository: gcr.io/heptio-images/ks-guestbook-demo
   tag: 0.1
