@@ -11,7 +11,7 @@ image:
 
 promotion:
   auto: true
-  seconds: 10
+  seconds: ~
 
 service:
   type: ClusterIP
