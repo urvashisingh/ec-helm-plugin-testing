@@ -33,4 +33,5 @@ What can be controlled described in controls.
 #### canary_pause_with_steps  
 	Canary with indefinite pause and weight set to 30  
 	controls :  
-		image.tag=0,1 or 0,2  
+		image.tag=0,1 or 0,2
+        pause.duration=~ or number in seconds

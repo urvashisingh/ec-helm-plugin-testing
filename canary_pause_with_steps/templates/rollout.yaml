@@ -18,7 +18,7 @@ spec:
     canary:
       steps:
         - setWeight: 30
-        - pause: {}
+        - pause: { {{ .Values.pause.duration }} }
       
   template:
     metadata:
