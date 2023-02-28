@@ -13,6 +13,9 @@ promotion:
   auto: true
   seconds: ~
 
+scaledown:
+  abortseconds: 30
+
 service:
   type: ClusterIP
   port: 80

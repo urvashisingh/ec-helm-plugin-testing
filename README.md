@@ -17,7 +17,8 @@ What can be controlled described in controls.
 	controls :   
 		image.tag=0,1 or 0,2  
 		promotion.auto=true or false  
-		promotion.seconds=~ or number in seconds  
+		promotion.seconds=~ or number in seconds
+        scaledown.abortseconds=30 in seconds
 		
 #### canary_multi_pause  
 	Canary with multiple pauses. Indefinite and several timed  

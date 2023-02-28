@@ -20,6 +20,7 @@ spec:
       previewService: {{ template "helm-guestbook.fullname" . }}-preview
       autoPromotionEnabled: {{ .Values.promotion.auto }}
       autoPromotionSeconds: {{ .Values.promotion.seconds}}
+      abortScaleDownDelaySeconds: {{ .Values.scaledown.abortseconds}}
 
   template:
     metadata:
