@@ -5,7 +5,7 @@
 replicaCount: 3
 
 pause:
-  duration: ~
+  duration:
 
 image:
   repository: gcr.io/heptio-images/ks-guestbook-demo

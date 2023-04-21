@@ -18,8 +18,15 @@ spec:
     canary:
       steps:
         - setWeight: 30
-        - pause: { {{ toYaml .Values.pause.duration }} }
-      
+{{- if (eq (int .Values.pause.duration) -1) }}
+{{- else }}
+{{- if .Values.pause.duration }}
+        - pause:
+            duration: "{{ .Values.pause.duration }}"
+{{- else }}
+        - pause: {}
+{{- end }}
+{{- end }}
   template:
     metadata:
       labels:
