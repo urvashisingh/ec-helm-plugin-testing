@@ -8,7 +8,7 @@ pause:
   duration:
 
 image:
-  repository: gcr.io/heptio-images/ks-guestbook-demo
+  repository: urvashisingh/guestbook-demo
   tag: 0.1
   pullPolicy: IfNotPresent
 
