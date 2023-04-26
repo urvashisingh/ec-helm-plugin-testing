@@ -2,15 +2,16 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-replicaCount: 3
-
-pause:
-  duration:
-
 image:
   repository: urvashisingh/guestbook-demo
   tag: 0.1
   pullPolicy: IfNotPresent
+
+
+replicaCount: 3
+
+pause:
+  duration:
 
 service:
   type: ClusterIP
