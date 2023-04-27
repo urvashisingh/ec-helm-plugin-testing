@@ -3,7 +3,6 @@ image:
   tag: 0.1
   pullPolicy: IfNotPresent
 
-
 replicaCount: 3
 
 pause:
