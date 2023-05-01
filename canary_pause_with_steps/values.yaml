@@ -1,10 +1,9 @@
 image:
   repository: urvashisingh/guestbook-demo
-  tag: 0.2
+  tag: 0.1
   pullPolicy: IfNotPresent
 
 replicaCount: 3
-
 
 pause:
   duration:
