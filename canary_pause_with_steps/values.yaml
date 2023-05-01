@@ -5,6 +5,7 @@ image:
 
 replicaCount: 3
 
+
 pause:
   duration:
 
